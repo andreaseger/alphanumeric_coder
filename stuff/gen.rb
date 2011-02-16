@@ -1,5 +1,5 @@
 require 'rubygems'
-require "awesome_print"
+#require "awesome_print"
 require 'fastercsv'
 
 require 'redis'
@@ -34,11 +34,26 @@ def save_in_csv(per_row)
   end
 end
 
-def run(count, per_row)
-DB.del 'codes'
-ap generate(count)
-#show_all
-#save_in_csv(per_row)
+def generate_and_save(count, per_row)
+  row = []
+  FasterCSV.open("temp.csv", "wb") do |csv|
+    count.times do
+      row.push(10.times.map{ ALPHABET.choice }.join)
+      if row.count == per_row
+        csv << row
+        row = []
+      end
+    end
+    csv << row unless row == []
+  end
 end
 
-run(7000000,10)
+def run(count, per_row)
+#DB.del 'codes'
+generate(count)
+#show_all
+save_in_csv(per_row)
+#generate_and_save(count, per_row)
+end
+
+run(1000000,10)
