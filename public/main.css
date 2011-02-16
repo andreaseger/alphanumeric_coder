@@ -1,0 +1,19 @@
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+#flash_notice {
+  background-color: #ccffcc;
+  border: solid 1px #66cc66;
+}
+#flash_error{
+  background-color: #ffcccc;
+  border: solid 1px #cc6666;
+}
+
+#nav {
+  list-style-type: none;
+	position: absolute;
+	top: 1em;
+	right: 1em;
+}
